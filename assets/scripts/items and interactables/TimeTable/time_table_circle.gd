@@ -4,16 +4,19 @@ extends Control
 # This script has the object rotate in a circular motion and rotate its children
 # around it, ensuring the children stay upright.
 
-@export var front_scale: float = 0.8
-@export var back_scale: float = 0.4
+@export var base_scale: float = 0.5
+@export var front_back_ratio: float = 1.0
 @export var side_alpha: float = 0.55
 @export var tween_time: float = 0.5
 
-@export var offset_degrees: float = 145
+@export var offset_degrees: float = 180
 @export var steps_per_tower: int = 8
 
 @onready var sub_control_folder: Control = $Towers
 @onready var base_mesh: Polygon2D = $Base
+
+var front_scale = base_scale * front_back_ratio
+var back_scale = base_scale
 
 var radius_x: float = 200.0
 var radius_y: float = 200.0
@@ -75,14 +78,14 @@ func set_base_polygon() -> void:
 			var progress_ratio = (fractional_i - float(curr_tower)) / float(towers.size())
 			var angle = progress_ratio * TAU + (offset_degrees * PI / 180.0)
 			
-			var depth = cos(angle)
-			var x = sin(angle) * radius_x
-			var y = -depth * radius_y
-			
 			# get same depth used on towers
+			var depth = cos(angle)
 			var depth_normalized = inverse_lerp(1.0, -1.0, depth)
 			var scale_value = lerp(back_scale, front_scale, depth_normalized)
 			
+			var x = sin(angle) * radius_x * scale_value
+			var y = -depth * radius_y * scale_value
+
 			# factor in depth to get actual location for polygon point
 			var true_bottom_center = Vector2(x, y + (tower.size.y * scale_value) * 0.5)
 			tower_locations.append(true_bottom_center)
@@ -152,12 +155,14 @@ func update_tower_carousel(animated: bool) -> void:
 		var offset = _get_wrapped_offset(i - curr_tower)
 		var angle = offset * TAU / float(towers.size()) + offset_degrees * PI / 180
 		
+		# get same depth used on towers
 		var depth = cos(angle)
-		var x = sin(angle) * radius_x
-		var y = -depth * radius_y
-		
 		var depth_normalized = inverse_lerp(1.0, -1.0, depth)
 		var scale_value = lerp(back_scale, front_scale, depth_normalized)
+		
+		var x = sin(angle) * radius_x * scale_value
+		var y = -depth * radius_y * scale_value
+
 		var alpha_value = lerp(side_alpha, 1.0, depth_normalized)
 		
 		var target_position = Vector2(x, y) - tower.pivot_offset
