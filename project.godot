@@ -17,11 +17,12 @@ config/icon="uid://bjufvyg33nai3"
 
 [autoload]
 
-AudioManager="*uid://mq8b6oh2egqf"
 Hitstop="*uid://cvgi7v2mrp2fw"
 TransitionScene="*uid://b8lrblnl6vkk1"
 GameManager="*uid://ccxrm81jkpvgu"
 LevelManager="*uid://dqin58mkmrylg"
+SceneTransition="*uid://cw7kyg24euoyc"
+AudioManager="*uid://mq8b6oh2egqf"
 
 [display]
 

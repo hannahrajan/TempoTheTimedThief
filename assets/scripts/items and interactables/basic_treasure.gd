@@ -72,6 +72,7 @@ func _on_pick_up_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		AudioManager.play_treasure_pickup()
 		
+		# Increase temporary treasure count.
 		match $AnimatedSprite2D.frame:
 			0:
 				GameManager.temp_treasure += 1
@@ -85,4 +86,5 @@ func _on_pick_up_body_entered(body: Node2D) -> void:
 				GameManager.temp_treasure += 50
 			5:
 				GameManager.temp_treasure += 100
+				
 		queue_free()

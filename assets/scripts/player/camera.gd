@@ -26,11 +26,28 @@ var look_dir: float = 1.0
 var turn_timer: float = 0.0
 
 
+@export var shake_fade: float = 10.0
+# Strength of the camera shaking, decreases over time.
+var _shake_strength: float = 0.0
+
 func _ready() -> void:
 	drag_vertical_enabled = true
 	drag_top_margin = deadzone_top
 	drag_bottom_margin = deadzone_bottom
+	add_to_group("camera")
 
+# Call this function from other places that want to trigger a screen shake.
+func start_shaking_that_thang(max_shake: int) -> void:
+	_shake_strength = max_shake
+
+# Dictates screen shaking.
+func _process(delta: float) -> void:
+	if _shake_strength > 0:
+		_shake_strength = lerp(_shake_strength, 0.0, shake_fade * delta)
+		offset = Vector2(
+			randf_range(-_shake_strength, _shake_strength), 
+			randf_range(-_shake_strength, _shake_strength)
+			)
 
 # The camera's process callback is set to Physics,
 # so update alongside the player's movement to avoid jitter.

@@ -7,7 +7,7 @@ const BOOM_FRAME:= 9
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hitflash_player: AnimationPlayer = $HitflashPlayer
-	
+
 func _on_sprite_2d_frame_changed() -> void:
 	if $Sprite2D.frame == BOOM_FRAME:
 		AudioManager.play_bombodoro_2()
@@ -17,6 +17,8 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 		boom = true
 		AudioManager.play_bombodoro_1()
 		animation_player.play("Explode")
+		
+		# Remove this Bombodoro upon exploding. 
 		await animation_player.animation_finished
 		queue_free()
 

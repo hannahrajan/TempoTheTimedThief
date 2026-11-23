@@ -1,7 +1,7 @@
 class_name AttoHub
 extends CharacterBody2D
 
-@onready var animator: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var arrow: AnimatedSprite2D = $InteractArrow
 
 var player: Node2D
@@ -11,6 +11,9 @@ var interacting: bool = false
 var is_transitioning: bool = false
 
 func _ready() -> void:
+	
+	sprite.play("Idle")
+	
 	arrow.visible = false
 	
 	for child in get_children():
@@ -41,9 +44,10 @@ func _process(_delta: float) -> void:
 	if not interacting and Input.is_action_just_pressed("interact"):
 		arrow.visible = true
 		scene_chosen()
-		
+	
 func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
+		#SceneTransition.change_scene_to("res://assets/scenes/locations/tutorial-the_clock_tower.tscn")
 		$InteractArrow.visible = true
 		interacting = true
 		

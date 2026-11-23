@@ -31,4 +31,4 @@ func _on_detection_area_body_exited(body: Node2D) -> void:
 func converse() -> void:
 	var timer = get_tree().get_first_node_in_group("level_timer")
 	timer.leveltimer.stop()
-	$"../../Gj".visible = true
+	SceneTransition.change_scene_to("res://assets/scenes/locations/hub_world.tscn")

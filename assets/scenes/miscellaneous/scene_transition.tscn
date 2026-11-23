@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cw7kyg24euoyc"]
+
+[ext_resource type="Script" uid="uid://by46y5q3bjxg4" path="res://assets/scripts/miscellaneous/scene_transition.gd" id="1_n365h"]
+
+[node name="SceneTransition" type="CanvasLayer" unique_id=1871237200]
+process_mode = 3
+follow_viewport_enabled = true
+script = ExtResource("1_n365h")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=389301033]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 1200.0
+offset_bottom = 900.0
+mouse_filter = 2

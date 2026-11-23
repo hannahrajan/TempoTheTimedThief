@@ -1,0 +1,140 @@
+[gd_scene format=3 uid="uid://mq8b6oh2egqf"]
+
+[ext_resource type="Script" uid="uid://bfsqqbfxvqi05" path="res://assets/scripts/audio/audio_manager.gd" id="1_50j53"]
+[ext_resource type="AudioStream" uid="uid://bn2yk8aehvf6i" path="res://assets/audio/sfx/jump.wav" id="2_8rbff"]
+[ext_resource type="AudioStream" uid="uid://dtd1jik2yxpe" path="res://assets/audio/sfx/attack.wav" id="3_c5ukc"]
+[ext_resource type="AudioStream" uid="uid://drkg1yx5bqueg" path="res://assets/audio/sfx/divekick.wav" id="4_bf0aw"]
+[ext_resource type="AudioStream" uid="uid://bm4b1qckaueds" path="res://assets/audio/sfx/damaged.wav" id="5_70yev"]
+[ext_resource type="AudioStream" uid="uid://cr85el808a3ht" path="res://assets/audio/sfx/slide.wav" id="6_womp1"]
+[ext_resource type="AudioStream" uid="uid://dgna7c32etlqd" path="res://assets/audio/sfx/enemydamaged.wav" id="7_qnwth"]
+[ext_resource type="AudioStream" uid="uid://n3givy0abcyg" path="res://assets/audio/sfx/enemydeath.wav" id="8_720p6"]
+[ext_resource type="AudioStream" uid="uid://o0liqyo6ncuo" path="res://assets/audio/sfx/bombodoro1.wav" id="9_p4wrw"]
+[ext_resource type="AudioStream" uid="uid://gsrqjro6qrlu" path="res://assets/audio/sfx/bombodoro2.wav" id="10_5lfum"]
+[ext_resource type="AudioStream" uid="uid://b373eygad4kfe" path="res://assets/audio/sfx/chestopen.wav" id="11_oe7ct"]
+[ext_resource type="AudioStream" uid="uid://dl1o43drcnje2" path="res://assets/audio/sfx/pickup.wav" id="12_h5itl"]
+[ext_resource type="AudioStream" uid="uid://wxbwolqtqgdu" path="res://assets/audio/sfx/pickupkey.wav" id="13_wsrx7"]
+[ext_resource type="AudioStream" uid="uid://cp1cpay7crodf" path="res://assets/audio/sfx/keyopen.wav" id="14_8kfmj"]
+[ext_resource type="AudioStream" uid="uid://b6rrj38pfj1nv" path="res://assets/audio/sfx/breakblock.wav" id="15_3ldxh"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jv405"]
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("2_8rbff")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mwcys"]
+random_pitch = 1.122462
+streams_count = 1
+stream_0/stream = ExtResource("3_c5ukc")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hfphn"]
+random_pitch = 1.0594631
+streams_count = 1
+stream_0/stream = ExtResource("4_bf0aw")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y8msr"]
+streams_count = 1
+stream_0/stream = ExtResource("5_70yev")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xdrcp"]
+streams_count = 1
+stream_0/stream = ExtResource("6_womp1")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ysy5o"]
+random_pitch = 1.0905077
+streams_count = 1
+stream_0/stream = ExtResource("7_qnwth")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hoiov"]
+random_pitch = 1.1892071
+streams_count = 1
+stream_0/stream = ExtResource("8_720p6")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l7s6o"]
+random_pitch = 1.2599211
+streams_count = 1
+stream_0/stream = ExtResource("12_h5itl")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gtb1o"]
+random_pitch = 1.2599211
+streams_count = 1
+stream_0/stream = ExtResource("13_wsrx7")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ccj0v"]
+streams_count = 1
+stream_0/stream = ExtResource("14_8kfmj")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6ax18"]
+random_pitch = 1.3348398
+streams_count = 1
+stream_0/stream = ExtResource("15_3ldxh")
+
+[node name="AudioManager" type="Node2D" unique_id=1334757344]
+script = ExtResource("1_50j53")
+
+[node name="Music" type="Node2D" parent="." unique_id=992806095]
+
+[node name="SFX" type="Node2D" parent="." unique_id=1627795973]
+
+[node name="Player" type="Node" parent="SFX" unique_id=147161567]
+
+[node name="Jump" type="AudioStreamPlayer" parent="SFX/Player" unique_id=157597719]
+stream = SubResource("AudioStreamRandomizer_jv405")
+
+[node name="Attack" type="AudioStreamPlayer" parent="SFX/Player" unique_id=238956902]
+stream = SubResource("AudioStreamRandomizer_mwcys")
+volume_db = -5.0
+
+[node name="Divekick" type="AudioStreamPlayer" parent="SFX/Player" unique_id=1358596868]
+stream = SubResource("AudioStreamRandomizer_hfphn")
+volume_db = -2.0
+
+[node name="Damaged" type="AudioStreamPlayer" parent="SFX/Player" unique_id=433282818]
+stream = SubResource("AudioStreamRandomizer_y8msr")
+
+[node name="Slide" type="AudioStreamPlayer" parent="SFX/Player" unique_id=669068518]
+stream = SubResource("AudioStreamRandomizer_xdrcp")
+volume_db = -5.0
+pitch_scale = 2.0
+
+[node name="Enemy" type="Node" parent="SFX" unique_id=1502517427]
+
+[node name="Damaged" type="AudioStreamPlayer" parent="SFX/Enemy" unique_id=103335893]
+stream = SubResource("AudioStreamRandomizer_ysy5o")
+
+[node name="Death" type="AudioStreamPlayer" parent="SFX/Enemy" unique_id=1756153997]
+stream = SubResource("AudioStreamRandomizer_hoiov")
+volume_db = -1.0
+
+[node name="Bombodoro1" type="AudioStreamPlayer" parent="SFX/Enemy" unique_id=207302539]
+stream = ExtResource("9_p4wrw")
+volume_db = -3.0
+pitch_scale = 1.5
+
+[node name="Bombodoro2" type="AudioStreamPlayer" parent="SFX/Enemy" unique_id=1505232123]
+stream = ExtResource("10_5lfum")
+volume_db = -5.0
+
+[node name="Treasure" type="Node" parent="SFX" unique_id=762997924]
+
+[node name="ChestOpen" type="AudioStreamPlayer" parent="SFX/Treasure" unique_id=1298638781]
+stream = ExtResource("11_oe7ct")
+
+[node name="Pickup" type="AudioStreamPlayer" parent="SFX/Treasure" unique_id=901179576]
+stream = SubResource("AudioStreamRandomizer_l7s6o")
+volume_db = -5.0
+
+[node name="PickupKey" type="AudioStreamPlayer" parent="SFX/Treasure" unique_id=901008937]
+stream = SubResource("AudioStreamRandomizer_gtb1o")
+volume_db = -5.0
+
+[node name="KeyOpen" type="AudioStreamPlayer" parent="SFX/Treasure" unique_id=128094898]
+stream = SubResource("AudioStreamRandomizer_ccj0v")
+volume_db = 2.0
+
+[node name="Misc" type="Node" parent="SFX" unique_id=1906689560]
+
+[node name="Enter" type="AudioStreamPlayer" parent="SFX/Misc" unique_id=1106803847]
+
+[node name="BreakBlock" type="AudioStreamPlayer" parent="SFX/Misc" unique_id=476084612]
+stream = SubResource("AudioStreamRandomizer_6ax18")
+volume_db = -10.0

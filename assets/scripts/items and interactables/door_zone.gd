@@ -27,7 +27,7 @@ func start_transition(body: Node2D) -> void:
 	player.can_move = false
 	player.is_transitioning = true
 	
-	AudioManager.play_enter()
+	AudioManager.play_enter_door()
 	TransitionScene.transition()
 	await TransitionScene.on_transition_finished
 	

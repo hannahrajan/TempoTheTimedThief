@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://cht1m3wd8wuvj"]
+
+[ext_resource type="Script" uid="uid://w4vkhwm53owb" path="res://assets/scripts/npcs/hub_old_krone.gd" id="1_nwhnn"]
+[ext_resource type="Texture2D" uid="uid://dgw55ql3ddig1" path="res://assets/sprites/npcs/Old Krone/Old Krone.png" id="1_xc1tp"]
+[ext_resource type="Texture2D" uid="uid://clwakqmwhbrnr" path="res://assets/sprites/items and interactables/Interact Arrow.png" id="2_nwhnn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqtin"]
+atlas = ExtResource("1_xc1tp")
+region = Rect2(0, 0, 32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vayml"]
+atlas = ExtResource("1_xc1tp")
+region = Rect2(32, 0, 32, 40)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ov37h"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqtin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vayml")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0dcud"]
+size = Vector2(32, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gov6"]
+atlas = ExtResource("2_nwhnn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3um8"]
+atlas = ExtResource("2_nwhnn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyj5x"]
+atlas = ExtResource("2_nwhnn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8ilk"]
+atlas = ExtResource("2_nwhnn")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynkm7"]
+atlas = ExtResource("2_nwhnn")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ol56"]
+atlas = ExtResource("2_nwhnn")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7oqf"]
+atlas = ExtResource("2_nwhnn")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4vrd"]
+atlas = ExtResource("2_nwhnn")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n4w70"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gov6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3um8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyj5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8ilk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynkm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ol56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7oqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4vrd")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="HubOldKrone" type="CharacterBody2D" unique_id=1058011679]
+script = ExtResource("1_nwhnn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1393198130]
+sprite_frames = SubResource("SpriteFrames_ov37h")
+autoplay = "default"
+frame_progress = 0.6208543
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=2106009544]
+collision_layer = 0
+
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea" unique_id=75714951]
+shape = SubResource("RectangleShape2D_0dcud")
+debug_color = Color(0, 1, 0.4333334, 0.41960785)
+
+[node name="InteractArrow" type="AnimatedSprite2D" parent="." unique_id=1304773009]
+position = Vector2(0, -23)
+sprite_frames = SubResource("SpriteFrames_n4w70")
+autoplay = "default"
+
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://cki8tgbu6psrm"]
+
+[ext_resource type="Script" uid="uid://c42yu6hek4reb" path="res://assets/scripts/items and interactables/bounce_gem.gd" id="1_lwuv5"]
+[ext_resource type="Texture2D" uid="uid://byul4t608smum" path="res://assets/sprites/items and interactables/bounce gem/Bounce Gem.png" id="2_lwuv5"]
+[ext_resource type="Texture2D" uid="uid://d0v2sk52ptn07" path="res://assets/sprites/items and interactables/bounce gem/Bounce Gem Particles.png" id="3_2pqae"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lwuv5"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jx03w"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ehjhi"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w22a1"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ci1b6"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wor5w"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax0bg"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oeps0"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cui07"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljafh"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wggwm"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vhhn"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjwex"]
+atlas = ExtResource("3_2pqae")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfphn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jx03w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ehjhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w22a1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ci1b6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wor5w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax0bg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oeps0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cui07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljafh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wggwm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vhhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjwex")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="BounceGem" type="Node2D" unique_id=1910329760]
+script = ExtResource("1_lwuv5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1502523398]
+texture = ExtResource("2_lwuv5")
+hframes = 2
+
+[node name="CheckForAttackHitbox" type="Area2D" parent="." unique_id=1684637626]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckForAttackHitbox" unique_id=533223793]
+shape = SubResource("RectangleShape2D_lwuv5")
+debug_color = Color(1, 1, 0, 0.41960785)
+
+[node name="Timer" type="Timer" parent="." unique_id=2043403774]
+wait_time = 3.0
+one_shot = true
+
+[node name="Particles" type="AnimatedSprite2D" parent="." unique_id=1522588928]
+sprite_frames = SubResource("SpriteFrames_hfphn")
+autoplay = "default"
+
+[connection signal="area_entered" from="CheckForAttackHitbox" to="." method="_on_check_for_attack_hitbox_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

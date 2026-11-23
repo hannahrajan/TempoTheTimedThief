@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://cs1lk5kwrp06i"]
 
 [ext_resource type="Script" uid="uid://dbhxrxyrl85vl" path="res://assets/scripts/ui/level_timer.gd" id="1_iamgx"]
-[ext_resource type="Texture2D" uid="uid://mu6chrovluai" path="res://assets/sprites/ui/Chronic_Heart_Heart.png" id="2_6m43u"]
-[ext_resource type="FontFile" uid="uid://myucyoksi71d" path="res://assets/miscellaneous/fonts/static/PixelifySans-Regular.ttf" id="3_83531"]
+[ext_resource type="Texture2D" uid="uid://dl1vwayjvomwn" path="res://assets/sprites/ui/Heart.png" id="2_83531"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_35to3"]
 font_size = 11
@@ -17,14 +16,14 @@ wait_time = 10.0
 one_shot = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1127533920]
-texture = ExtResource("2_6m43u")
+texture = ExtResource("2_83531")
+hframes = 4
 
 [node name="Label" type="Label" parent="." unique_id=1554559794]
-offset_left = -20.0
-offset_top = -12.0
-offset_right = 20.0
-offset_bottom = 11.0
-theme_override_fonts/font = ExtResource("3_83531")
+offset_left = -170.0
+offset_top = -121.0
+offset_right = -144.0
+offset_bottom = -105.0
 text = "X:XX"
 label_settings = SubResource("LabelSettings_35to3")
 horizontal_alignment = 1

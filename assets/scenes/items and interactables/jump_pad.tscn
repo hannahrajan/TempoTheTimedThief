@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://c1h6ihpmvpyde"]
+
+[ext_resource type="Texture2D" uid="uid://d3flq45r4iyvy" path="res://assets/sprites/items and interactables/jump pad/Jump Pad.png" id="1_anylv"]
+[ext_resource type="Script" uid="uid://b2bx3aon2suq7" path="res://assets/scripts/items and interactables/jump_pad.gd" id="1_e1mlm"]
+
+[sub_resource type="Animation" id="Animation_anylv"]
+resource_name = "Activation"
+length = 0.19999999999999998
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_e1mlm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fsd5w"]
+_data = {
+&"Activation": SubResource("Animation_anylv"),
+&"RESET": SubResource("Animation_e1mlm")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfphn"]
+size = Vector2(32, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysy5o"]
+size = Vector2(32, 4)
+
+[node name="JumpPad" type="Node2D" unique_id=1301740344]
+script = ExtResource("1_e1mlm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1147442953]
+texture = ExtResource("1_anylv")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=440433563]
+libraries/ = SubResource("AnimationLibrary_fsd5w")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=2101702667]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1471722923]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_hfphn")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=943245246]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2126040043]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_ysy5o")
+debug_color = Color(1, 1, 1, 0.41960785)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

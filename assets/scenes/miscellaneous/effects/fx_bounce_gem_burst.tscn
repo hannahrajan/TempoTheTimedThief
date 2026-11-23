@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://b4l2b3hy0d12k"]
+
+[ext_resource type="Texture2D" uid="uid://bw5k7msctrkyl" path="res://assets/sprites/items and interactables/bounce gem/Bounce Gem Burst.png" id="1_ttsup"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ttsup"]
+atlas = ExtResource("1_ttsup")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hruxt"]
+atlas = ExtResource("1_ttsup")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgx5t"]
+atlas = ExtResource("1_ttsup")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p5hl"]
+atlas = ExtResource("1_ttsup")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe5up"]
+atlas = ExtResource("1_ttsup")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4f2p"]
+atlas = ExtResource("1_ttsup")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rb8uk"]
+atlas = ExtResource("1_ttsup")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrqqq"]
+atlas = ExtResource("1_ttsup")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24uv1"]
+atlas = ExtResource("1_ttsup")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5v5a"]
+atlas = ExtResource("1_ttsup")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_btyab"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ttsup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hruxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgx5t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0p5hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe5up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4f2p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rb8uk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrqqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24uv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5v5a")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": 0,
+"name": &"default",
+"speed": 25.0
+}]
+
+[node name="BounceGemBurst" type="AnimatedSprite2D" unique_id=1437296764]
+sprite_frames = SubResource("SpriteFrames_btyab")
+frame_progress = 1.0

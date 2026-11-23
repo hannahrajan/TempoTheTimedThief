@@ -1,7 +1,6 @@
 [gd_scene format=4 uid="uid://cs6yt84erlmwj"]
 
 [ext_resource type="PackedScene" uid="uid://cs1lk5kwrp06i" path="res://assets/scenes/ui/leveltimer.tscn" id="1_nu17j"]
-[ext_resource type="Script" uid="uid://cpj0ms1j1u6eh" path="res://assets/scripts/other/screenie.gd" id="1_q123d"]
 [ext_resource type="PackedScene" uid="uid://bcoj2t6rvvmf2" path="res://assets/scenes/ui/hud.tscn" id="1_t8rwm"]
 [ext_resource type="Texture2D" uid="uid://cwk1pyg1q2jj0" path="res://assets/sprites/tilesets/Tileset (Clock Tower).png" id="1_tgljw"]
 [ext_resource type="Texture2D" uid="uid://bqlc78ifltdma" path="res://assets/sprites/tilesets/parallax/Night Sky (Clock Tower)/nightsky0.png" id="1_txix4"]
@@ -32,7 +31,6 @@
 [ext_resource type="PackedScene" uid="uid://byqjhoip26y05" path="res://assets/scenes/npcs/basic_npc.tscn" id="25_bij3n"]
 [ext_resource type="PackedScene" uid="uid://calfhx4sco608" path="res://assets/scenes/enemies/bombodoro.tscn" id="27_cthdf"]
 [ext_resource type="Script" uid="uid://dv755fx0lvkqg" path="res://assets/scripts/other/basic_npc.gd" id="27_x8lr0"]
-[ext_resource type="Texture2D" uid="uid://dhvfdc06q8vqq" path="res://assets/sprites/tilesets/gj.png" id="31_1tiuq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f7kk0"]
 atlas = ExtResource("1_wjfwt")
@@ -567,15 +565,13 @@ sources/0 = SubResource("TileSetAtlasSource_25i60")
 size = Vector2(128, 128)
 
 [node name="TutorialTheClockTower" type="Node2D" unique_id=960022459]
-script = ExtResource("1_q123d")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1188578362]
 
 [node name="HUD" parent="CanvasLayer" unique_id=1669747353 instance=ExtResource("1_t8rwm")]
 
 [node name="Level Timer" parent="CanvasLayer" unique_id=929770682 instance=ExtResource("1_nu17j")]
-position = Vector2(42, 36)
-totalleveltime = 0.0
+position = Vector2(200, 150)
 
 [node name="ParallaxBG" type="Node2D" parent="." unique_id=799293462]
 position = Vector2(2576, 212)
@@ -1285,7 +1281,7 @@ position = Vector2(2365, -231)
 position = Vector2(2600, -327)
 
 [node name="Player" parent="." unique_id=1102362985 instance=ExtResource("2_tgljw")]
-position = Vector2(203, 308)
+position = Vector2(2471, -241)
 
 [node name="Hidden Area Cover Tiles" type="TileMapLayer" parent="." unique_id=1919002122]
 position = Vector2(1979, 212)
@@ -1298,8 +1294,3 @@ tile_set = SubResource("TileSet_25i60")
 position = Vector2(368, -112)
 shape = SubResource("RectangleShape2D_xdrcp")
 debug_color = Color(0.6991651, 0.493146, 0, 0.41960785)
-
-[node name="Gj" type="Sprite2D" parent="." unique_id=1553562690]
-visible = false
-position = Vector2(2347, -673)
-texture = ExtResource("31_1tiuq")

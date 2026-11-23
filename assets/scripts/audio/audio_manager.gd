@@ -30,7 +30,9 @@ func play_key_pickup() -> void:
 func play_key_open() -> void:
 	$SFX/Treasure/KeyOpen.play()
 #================Miscellaneous SFX================
-func play_enter() -> void:
+func play_enter_door() -> void:
 	$SFX/Treasure/KeyOpen.play()
+func play_enter_portal() -> void:
+	$SFX/Enemy/Bombodoro1.play()
 func play_break_block() -> void:
 	$SFX/Misc/BreakBlock.play()

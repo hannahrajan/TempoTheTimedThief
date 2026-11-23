@@ -1,32 +1,72 @@
 [gd_scene format=3 uid="uid://byqjhoip26y05"]
 
-[ext_resource type="Texture2D" uid="uid://byttxk2teirlb" path="res://assets/sprites/npcs/Atto/Idle.png" id="1_b1lcj"]
+[ext_resource type="Script" uid="uid://cq1hmhus7ipmt" path="res://assets/scripts/npcs/basic_npc.gd" id="1_3xhd6"]
+[ext_resource type="Texture2D" uid="uid://dr0knudstgxv7" path="res://assets/sprites/npcs/Basic NPCs/Atto Acolyte.png" id="2_3xhd6"]
 [ext_resource type="Texture2D" uid="uid://clwakqmwhbrnr" path="res://assets/sprites/items and interactables/Interact Arrow.png" id="2_iifgl"]
+[ext_resource type="Texture2D" uid="uid://ca1kjxrjsl1i2" path="res://assets/sprites/npcs/Basic NPCs/Atto Devotee.png" id="3_kdoah"]
+[ext_resource type="Texture2D" uid="uid://bmng31uqc7ku5" path="res://assets/sprites/npcs/Basic NPCs/Atto Apostle.png" id="4_p7rab"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iifgl"]
-atlas = ExtResource("1_b1lcj")
-region = Rect2(0, 0, 80, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdoah"]
+atlas = ExtResource("2_3xhd6")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3xhd6"]
-atlas = ExtResource("1_b1lcj")
-region = Rect2(80, 0, 80, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7rab"]
+atlas = ExtResource("2_3xhd6")
+region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hfphn"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ysy5o"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iifgl")
+"texture": SubResource("AtlasTexture_kdoah")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3xhd6")
+"texture": SubResource("AtlasTexture_p7rab")
 }],
 "loop": 1,
 "name": &"default",
-"speed": 1.0
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7gt4"]
+atlas = ExtResource("3_kdoah")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8uux"]
+atlas = ExtResource("3_kdoah")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xdrcp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7gt4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8uux")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5jan"]
+atlas = ExtResource("4_p7rab")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdoah"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5jan")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b1lcj"]
-size = Vector2(32, 56)
+size = Vector2(48.25, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gov6"]
 atlas = ExtResource("2_iifgl")
@@ -93,25 +133,69 @@ animations = [{
 }]
 
 [node name="BasicNPC" type="CharacterBody2D" unique_id=1950217086]
+script = ExtResource("1_3xhd6")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=542581174]
-sprite_frames = SubResource("SpriteFrames_hfphn")
+[node name="Sprites" type="Node2D" parent="." unique_id=162195898]
+
+[node name="AttoAcolyte" type="AnimatedSprite2D" parent="Sprites" unique_id=1063145789]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_ysy5o")
 autoplay = "default"
-frame_progress = 0.01733505
+
+[node name="AttoDevotee" type="AnimatedSprite2D" parent="Sprites" unique_id=345031580]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_xdrcp")
+autoplay = "default"
+
+[node name="AttoApostle" type="AnimatedSprite2D" parent="Sprites" unique_id=919413100]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_kdoah")
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1600603181]
 collision_layer = 0
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="DetectionShape" type="CollisionShape2D" parent="DetectionArea" unique_id=99984442]
-position = Vector2(0, 12)
+position = Vector2(0.125, -16)
 shape = SubResource("RectangleShape2D_b1lcj")
 debug_color = Color(0, 1, 0.4333334, 0.41960785)
 
 [node name="InteractArrow" type="AnimatedSprite2D" parent="." unique_id=2026520646]
-position = Vector2(0, -23)
+position = Vector2(0, -43)
 sprite_frames = SubResource("SpriteFrames_3xhd6")
 autoplay = "default"
 frame_progress = 0.19375756
 
+[node name="Timers" type="Node2D" parent="." unique_id=1471638007]
+
+[node name="MoveTimer" type="Timer" parent="Timers" unique_id=1879722784]
+wait_time = 3.0
+one_shot = true
+
+[node name="MoveCooldownTimer" type="Timer" parent="Timers" unique_id=979424166]
+wait_time = 3.0
+one_shot = true
+
+[node name="RayCasts (UNUSED)" type="Node2D" parent="." unique_id=1150587997]
+
+[node name="Left" type="RayCast2D" parent="RayCasts (UNUSED)" unique_id=1967195838]
+position = Vector2(0, -19)
+target_position = Vector2(-27, 0)
+
+[node name="Right" type="RayCast2D" parent="RayCasts (UNUSED)" unique_id=1780738479]
+position = Vector2(0, -19)
+target_position = Vector2(27, 0)
+
+[node name="LeftDown" type="RayCast2D" parent="RayCasts (UNUSED)" unique_id=823672908]
+position = Vector2(0, -19)
+target_position = Vector2(-25, 25)
+
+[node name="RightDown" type="RayCast2D" parent="RayCasts (UNUSED)" unique_id=1329977366]
+position = Vector2(0, -19)
+target_position = Vector2(25, 25)
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="timeout" from="Timers/MoveTimer" to="." method="_on_move_timer_timeout"]
+[connection signal="timeout" from="Timers/MoveCooldownTimer" to="." method="_on_move_cooldown_timer_timeout"]

@@ -6,7 +6,6 @@ extends CharacterBody2D
 
 var speed = 200.0
 var direction: float = 0.0
-var curr_health: int
 
 const SLIDESPEED = 500.0		# Sliding movement speed. (Not entirely sure why this has to be set so high to do anything)
 const DIVESPEED = 550.0			# Diving movement speed (see above)
@@ -14,6 +13,7 @@ const CRAWLSPEED = 120.0		# Crawling movement speed.
 const MOVESPEED = 200.0			# Normal movement speed.
 
 const JUMP_VELOCITY = -270.0	# Normal jump velocity.
+const JUMP_PAD_VELOCITY = -470.0 # Jump pad velocity.
 
 const ACCEL = 0.15
 const FRICTION = 0.2
@@ -37,6 +37,7 @@ var is_divekicking: bool = false # Checks if the player is divekicking.
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var player_cam: Camera2D = $Camera2D
 #================HITFLASH SHADER================
 # AnimationPlayer for a shader that indicates a flash of color when
 # Tempo takes damage.
@@ -64,16 +65,13 @@ var walljump_force: float = 500
 @onready var level_timer = get_tree().get_first_node_in_group("level_timer")
 #================PRELOADS================
 var fx_dki = preload("res://assets/scenes/miscellaneous/effects/fx_divekick_impact.tscn")
-
-
+var fx_pde = preload("res://assets/scenes/miscellaneous/effects/fx_bounce_gem_burst.tscn")
 #============================================================================
 #==================FUNCTIONS=================================================
 #============================================================================
 
 #================READY================
 func _ready():
-	# Placeholder health.
-	curr_health = 100
 	add_to_group("player")
 	
 	# This helps detect when a player animation finishes.
@@ -227,6 +225,7 @@ func _physics_process(delta: float) -> void:
 	if is_attacking and not is_aerial_attacking:
 		return
 	
+	#================DIVE KICK================
 	if (Input.is_action_just_pressed("timepower1") and not is_attacking
 		and not is_crouching):
 			level_timer.remove_time(5)
@@ -362,7 +361,6 @@ func _on_animation_player_animation_finished(animation: StringName) -> void:
 		if animation == "Attack":
 			$Timers/BasicAttackCooldown.start()
 
-
 #================SLOW ZONE================
 # Upon entering a slow zone hazard, Tempo's movement speeed should be
 # decreased. Upon exiting, return to normal.
@@ -403,15 +401,20 @@ func check_hit(area: Area2D) -> void:
 		take_damage(area.damage, area.global_position, area.knock_force)
 	
 func take_damage(amount: int, hazard_pos: Vector2, knockback: float) -> void:
-	curr_health -= amount
+	# Subtract from timer.
+	var time = level_timer.leveltimer.time_left
+	time -= amount
 	
-	# If the attack causes Tempo's timer to reach 0, death is imminent.
-	if curr_health <= 0:
+	# Tempo dies if the timer hits 0.
+	if time <= 0:
+		level_timer.leveltimer.stop()
 		die()
 	# Otherwise, knock Tempo back and start a timer.
 	# Tempo will have invincibility frames that disable his hurtbox.
 	# Then, when the timer is finished, restore Tempo's hurtbox.
 	else:
+		level_timer.leveltimer.start(time)
+		
 		var knock_dir: Vector2 = (global_position - hazard_pos).normalized()
 		velocity = knock_dir * knockback
 		
@@ -421,4 +424,21 @@ func take_damage(amount: int, hazard_pos: Vector2, knockback: float) -> void:
 		
 #================DEATH================
 func die() -> void:
-	queue_free()
+	# Prevent player from moving during death animation.
+	set_physics_process(false)
+	can_move = false
+	animation_player.play("Death")
+	
+	await animation_player.animation_finished
+	
+	# "Kill" player by hiding visibility and disabling hurtbox.
+	visible = false
+	hurtbox.disabled = true
+	
+	# Spawn player death explosion effect.
+	var pde = fx_pde.instantiate()
+	pde.global_position = position	
+	get_parent().call_deferred("add_child", pde)
+	pde.play()
+	
+	# Play death sound effect.

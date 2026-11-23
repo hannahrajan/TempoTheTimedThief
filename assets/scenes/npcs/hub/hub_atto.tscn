@@ -1,29 +1,49 @@
 [gd_scene format=3 uid="uid://bx5ini3esio3c"]
 
-[ext_resource type="Texture2D" uid="uid://byttxk2teirlb" path="res://assets/sprites/npcs/Atto/Idle.png" id="1_7ocgq"]
 [ext_resource type="Script" uid="uid://cf5uxhtgt8w5i" path="res://assets/scripts/npcs/hub_atto.gd" id="1_e2ioy"]
+[ext_resource type="Texture2D" uid="uid://uaf0wjtdfvp3" path="res://assets/sprites/npcs/Atto/Idle.png" id="2_8kt0a"]
 [ext_resource type="Texture2D" uid="uid://clwakqmwhbrnr" path="res://assets/sprites/items and interactables/Interact Arrow.png" id="2_e2ioy"]
+[ext_resource type="Texture2D" uid="uid://bg76w10pyeoko" path="res://assets/sprites/npcs/Atto/Laughing.png" id="3_8kt0a"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_iifgl"]
-atlas = ExtResource("1_7ocgq")
-region = Rect2(0, 0, 80, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_4204i"]
+atlas = ExtResource("2_8kt0a")
+region = Rect2(0, 0, 64, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3xhd6"]
-atlas = ExtResource("1_7ocgq")
-region = Rect2(80, 0, 80, 80)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rll4s"]
+atlas = ExtResource("2_8kt0a")
+region = Rect2(64, 0, 64, 80)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8kt0a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6jgp"]
+atlas = ExtResource("3_8kt0a")
+region = Rect2(0, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmqyl"]
+atlas = ExtResource("3_8kt0a")
+region = Rect2(64, 0, 64, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfphn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_iifgl")
+"texture": SubResource("AtlasTexture_4204i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3xhd6")
+"texture": SubResource("AtlasTexture_rll4s")
 }],
 "loop": 1,
-"name": &"default",
-"speed": 1.0
+"name": &"Idle",
+"speed": 0.7
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6jgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmqyl")
+}],
+"loop": 1,
+"name": &"Laughing",
+"speed": 7.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4204i"]
@@ -97,8 +117,10 @@ animations = [{
 script = ExtResource("1_e2ioy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=27709978]
-sprite_frames = SubResource("SpriteFrames_8kt0a")
-autoplay = "default"
+sprite_frames = SubResource("SpriteFrames_hfphn")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.997338
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=905108835]
 collision_layer = 0

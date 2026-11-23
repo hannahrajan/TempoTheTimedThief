@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://c51eespmx4csm" path="res://assets/scripts/ui/hud.gd" id="1_1m4ne"]
 [ext_resource type="Texture2D" uid="uid://b1bn37i0kxmul" path="res://assets/sprites/ui/HUD Icons.png" id="1_7fvg5"]
 [ext_resource type="Texture2D" uid="uid://lpmxiqkuxktb" path="res://assets/sprites/ui/HUD.png" id="2_nllkp"]
-[ext_resource type="FontFile" uid="uid://myucyoksi71d" path="res://assets/miscellaneous/fonts/static/PixelifySans-Regular.ttf" id="4_nllkp"]
 
 [node name="HUD" type="Control" unique_id=1669747353]
 layout_mode = 3
@@ -18,55 +17,31 @@ script = ExtResource("1_1m4ne")
 texture = ExtResource("2_nllkp")
 centered = false
 
-[node name="Treasure" type="Control" parent="." unique_id=1464377729]
-visible = false
+[node name="Labels" type="Control" parent="." unique_id=1464377729]
 anchors_preset = 0
 offset_left = 29.0
 offset_top = 33.0
 offset_right = 29.0
 offset_bottom = 33.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Treasure" unique_id=676407866]
-position = Vector2(7, 13)
-texture = ExtResource("1_7fvg5")
-region_enabled = true
-region_rect = Rect2(16, 0, 16, 16)
-
-[node name="TreasureLabel" type="Label" parent="Treasure" unique_id=1139016028]
-visible = false
+[node name="TreasureLabel" type="Label" parent="Labels" unique_id=1139016028]
 layout_mode = 0
-offset_left = 31.000004
-offset_top = -11.0
-offset_right = 41.000004
-offset_bottom = 12.0
+offset_left = 1.0
+offset_top = 17.0
+offset_right = 36.0
+offset_bottom = 40.0
 scale = Vector2(2, 2)
-theme_override_fonts/font = ExtResource("4_nllkp")
+theme_override_font_sizes/font_size = 10
 text = "0"
 
-[node name="Keys" type="Control" parent="." unique_id=802645463]
-visible = false
-anchors_preset = 0
-offset_left = 29.0
-offset_top = 4.0
-offset_right = 29.0
-offset_bottom = 4.0
-offset_transform_enabled = true
-
-[node name="Sprite2D" type="Sprite2D" parent="Keys" unique_id=1657766225]
-position = Vector2(7, 66)
-texture = ExtResource("1_7fvg5")
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="KeysLabel" type="Label" parent="Keys" unique_id=2144813179]
-visible = false
+[node name="KeysLabel" type="Label" parent="Labels" unique_id=2144813179]
 layout_mode = 0
-offset_left = 31.000004
-offset_top = 41.000004
-offset_right = 71.0
-offset_bottom = 64.0
+offset_left = 1.0
+offset_top = 40.0
+offset_right = 37.5
+offset_bottom = 63.0
 scale = Vector2(2, 2)
-theme_override_fonts/font = ExtResource("4_nllkp")
+theme_override_font_sizes/font_size = 10
 text = "0"
 
 [node name="Artifacts" type="Control" parent="." unique_id=1571241172]
@@ -77,49 +52,49 @@ offset_right = 29.0
 offset_bottom = -18.0
 
 [node name="A1" type="Sprite2D" parent="Artifacts" unique_id=11577573]
-position = Vector2(-13, 93)
+position = Vector2(-13, 128)
 texture = ExtResource("1_7fvg5")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
 
 [node name="A2" type="Sprite2D" parent="Artifacts" unique_id=301279695]
-position = Vector2(3, 93)
+position = Vector2(3, 128)
 texture = ExtResource("1_7fvg5")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
 
 [node name="A3" type="Sprite2D" parent="Artifacts" unique_id=1633117849]
-position = Vector2(-13, 109)
+position = Vector2(-13, 144)
 texture = ExtResource("1_7fvg5")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
 
 [node name="A4" type="Sprite2D" parent="Artifacts" unique_id=672274296]
-position = Vector2(3, 109)
+position = Vector2(3, 144)
 texture = ExtResource("1_7fvg5")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
 
 [node name="A5" type="Sprite2D" parent="Artifacts" unique_id=513604509]
-position = Vector2(-13, 125)
+position = Vector2(-13, 160)
 texture = ExtResource("1_7fvg5")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
 
 [node name="A6" type="Sprite2D" parent="Artifacts" unique_id=1307346988]
-position = Vector2(3, 125)
+position = Vector2(3, 160)
 texture = ExtResource("1_7fvg5")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
 
 [node name="A7" type="Sprite2D" parent="Artifacts" unique_id=775668518]
-position = Vector2(-13, 141)
+position = Vector2(-13, 176)
 texture = ExtResource("1_7fvg5")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
 
 [node name="A8" type="Sprite2D" parent="Artifacts" unique_id=876735992]
-position = Vector2(3, 141)
+position = Vector2(3, 176)
 texture = ExtResource("1_7fvg5")
 region_enabled = true
 region_rect = Rect2(32, 0, 16, 16)
