@@ -1,0 +1,4 @@
+Where would you like to go?
+label show_scene
+if {SceneInfo.scene} != "DEFAULT":
+	{SceneInfo.scene}

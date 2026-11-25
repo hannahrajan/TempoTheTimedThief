@@ -28,8 +28,21 @@ Dialogic="*uid://ds2q0uclmolvu"
 [dialogic]
 
 directories/dch_directory={}
-directories/dtl_directory={}
+directories/dtl_directory={
+"Atto_hub_world": "res://assets/miscellaneous/dialogue/timelines/Atto_hub_world.dtl"
+}
 layout/style_directory={}
+variables={
+"$TIMELINE": {
+"visited": 0
+},
+"@CHARACTER": {},
+"SceneInfo": {
+"scene": "DEFAULT"
+}
+}
+layout/style_list=[]
+layout/default_style="Default"
 
 [display]
 

@@ -154,7 +154,7 @@ func _process(_delta: float) -> void:
 func rotate_towers(direction: int) -> void:
 	is_rotating = true
 	# update current tower index
-	curr_tower = (curr_tower + direction) % towers.size()
+	curr_tower = (curr_tower + direction + towers.size()) % towers.size()
 	update_tower_carousel(true)
 
 func update_tower_carousel(animated: bool) -> void:
@@ -208,5 +208,5 @@ func _get_wrapped_offset(offset: int) -> int:
 	return offset
 
 func _on_hidden() -> void:
-	var scene = scene_paths[curr_tower] if curr_tower < scene_paths.size() else null
+	var scene: String = scene_paths[curr_tower] if (curr_tower >= 0 and curr_tower < scene_paths.size()) else ""
 	send_scene_path.emit(scene)

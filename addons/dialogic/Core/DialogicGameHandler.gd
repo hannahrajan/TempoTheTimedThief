@@ -246,10 +246,16 @@ func start_timeline(timeline:Variant, label_or_idx:Variant = "") -> void:
 	current_event_idx = -1
 
 	## Up visit count
-	if has_subsystem("VAR"):
-		var visit_count: int = VAR.get_special_variable("$TIMELINE", current_timeline.get_identifier(), "visited", 0)
-		VAR.set_special_variable("$TIMELINE", current_timeline.get_identifier(), "visited", visit_count+1)
+	if has_subsystem("VAR") and current_timeline != dialog_ending_timeline:
+		var identifier := current_timeline.get_identifier()
 
+		if not identifier.is_empty():
+			var visit_count: int = VAR.get_special_variable(
+				"$TIMELINE", identifier, "visited", 0
+			)
+			VAR.set_special_variable(
+				"$TIMELINE", identifier, "visited", visit_count + 1
+			)
 	if typeof(label_or_idx) in [TYPE_STRING, TYPE_STRING_NAME]:
 		if label_or_idx:
 			if has_subsystem("Jump"):
